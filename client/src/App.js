@@ -36,6 +36,11 @@ const LoginContainer = styled.div`
   height: 100vh;
 `
 
+const LOGIN_URI =
+  process.env.NODE_ENV !== 'production'
+    ? 'http://localhost:8888/login'
+    : 'https://nacho-spotify.herokuapp.com/login';
+
 function App() {
   const width = useWindowDimensions()
   const [token, setToken] = useState(null)
@@ -59,7 +64,7 @@ function App() {
       <GlobalStyle />
       {!token ? (
         <LoginContainer>
-          <LoginButton href="http://localhost:8888/login">
+          <LoginButton href={LOGIN_URI}>
             Log in to Spotify
           </LoginButton>
         </LoginContainer>
