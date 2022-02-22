@@ -4,10 +4,9 @@ import {
   TitleName,
   TopArtists,
   TitleAndSort,
-  DropDownItem,
-  DropDownContent,
-  DropDownButon,
 } from './TopArtistPage'
+
+import Loader from '../../components/Loader'
 
 import { getTopArtist } from '../../spotify'
 import { catchErrors } from '../../utils'
@@ -46,17 +45,18 @@ const TopArtistPage = () => {
     catchErrors(fetchData())
   }, [sortBy])
 
-  return (
+  return !data ? (
+    <Loader height="100vh" />
+  ) : (
     <TopArtistPageContainer>
       <TitleAndSort>
         <TitleName> Top Artist</TitleName>
         <DropDown propertyDrop={sortBy} setPropertyDrop={setSortBy} />
       </TitleAndSort>
       <TopArtists>
-        {data &&
-          data.items.map((item) => (
-            <People key={item.id} data={item} height="250px" />
-          ))}
+        {data.items.map((item) => (
+          <People key={item.id} data={item} height="250px" />
+        ))}
       </TopArtists>
     </TopArtistPageContainer>
   )

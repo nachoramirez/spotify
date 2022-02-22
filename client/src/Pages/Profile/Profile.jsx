@@ -16,6 +16,7 @@ import {
   getTopTraks,
 } from '../../spotify'
 
+import Loader from '../../components/Loader'
 import { catchErrors } from '../../utils'
 
 import ProfileHeader from '../../components/ProfileHeader/ProfileHeader.jsx'
@@ -78,21 +79,27 @@ const Profile = ({ profile }) => {
         <ShowMore onClick={() => navigate('/top-artists')}> SHOW MORE</ShowMore>
       </NameAndShowMore>
       <ProfileTop>
-        {topArtist &&
-          topArtist.items.map((item) => <People key={item.id} data={item} />)}
+        {!topArtist ? (
+          <Loader />
+        ) : (
+          topArtist.items.map((item) => <People key={item.id} data={item} />)
+        )}
       </ProfileTop>
       <NameAndShowMore>
         <TitleName> Top songs this month</TitleName>
         <ShowMore onClick={() => navigate('/top-songs')}> SHOW MORE</ShowMore>
       </NameAndShowMore>
-      {topTracks && <ListOfSongs songs={topTracks.items} />}
+      {!topTracks ? <Loader /> : <ListOfSongs songs={topTracks.items} />}
       <NameAndShowMore>
         <TitleName> Your playlist</TitleName>
         <ShowMore onClick={() => navigate('/playlists')}> SHOW MORE</ShowMore>
       </NameAndShowMore>
       <ProfileTop>
-        {playlist &&
-          playlist.items.map((item) => <Playlist key={item.id} data={item} />)}
+        {!playlist ? (
+          <Loader />
+        ) : (
+          playlist.items.map((item) => <Playlist key={item.id} data={item} />)
+        )}
       </ProfileTop>
     </ProfileContainer>
   )

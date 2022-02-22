@@ -24,6 +24,8 @@ import {
 
 import { catchErrors } from '../../utils'
 
+import Loader from '../../components/Loader'
+
 import Album from '../../components/Album/Album.jsx'
 import ListOfSongs from '../../components/ListOfSongs/ListOfSongs.jsx'
 import People from '../../components/People/People.jsx'
@@ -103,7 +105,9 @@ const ArtistPage = () => {
 
   return (
     <>
-      {artistData && (
+      {!artistData ? (
+        <Loader height={'100vh'} />
+      ) : (
         <ArtistPageContainer>
           <ArtistHeader>
             <ArtistPhoto src={artistData.images[1].url} />
@@ -118,7 +122,9 @@ const ArtistPage = () => {
               {isFollowing ? 'Unfollow' : 'Follow'}
             </FollowButton>
           </ArtistHeader>
-          {artistTopTracks && (
+          {!artistTopTracks ? (
+            <Loader />
+          ) : (
             <TopTracks>
               <TopTracksTitle> Top tracks</TopTracksTitle>
               <ListOfSongs songs={artistTopTracks.tracks} />
@@ -128,19 +134,25 @@ const ArtistPage = () => {
           <TopTracks>
             <TopTracksTitle> Top Albums</TopTracksTitle>
             <AlbumsContainer>
-              {artistAlbums &&
+              {!artistAlbums ? (
+                <Loader />
+              ) : (
                 artistAlbums.items.map((item) => (
                   <Album key={item.id} data={item} />
-                ))}
+                ))
+              )}
             </AlbumsContainer>
           </TopTracks>
           <TopTracks>
             <TopTracksTitle> Their fans also listen </TopTracksTitle>
             <AlbumsContainer>
-              {artistRelatedArtist &&
+              {!artistRelatedArtist ? (
+                <Loader />
+              ) : (
                 artistRelatedArtist.artists.map((item) => (
                   <People key={item.id} data={item} />
-                ))}
+                ))
+              )}
             </AlbumsContainer>
           </TopTracks>
         </ArtistPageContainer>

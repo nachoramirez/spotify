@@ -10,6 +10,7 @@ import DropDown from '../../components/DropDown/DropDown'
 import { getTopTracks } from '../../spotify'
 import { catchErrors } from '../../utils'
 
+import Loader from '../../components/Loader'
 import ListOfSongs from '../../components/ListOfSongs/ListOfSongs.jsx'
 
 const TopSongsPage = () => {
@@ -27,7 +28,9 @@ const TopSongsPage = () => {
 
   return (
     <>
-      {data && (
+      {!data ? (
+        <Loader height="100vh" />
+      ) : (
         <TopSongsPageContainer>
           <TitleAndSort>
             <TitleName> Top Songs</TitleName>

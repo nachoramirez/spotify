@@ -10,6 +10,8 @@ import { getCurrentProfilePlaylist } from '../../spotify'
 
 import { catchErrors } from '../../utils'
 
+import Loader from '../../components/Loader.js'
+
 import Playlist from '../../components/Playlist/Playlist.jsx'
 
 const TopPlaylistPage = () => {
@@ -20,16 +22,19 @@ const TopPlaylistPage = () => {
       const { data } = await getCurrentProfilePlaylist()
       setPlaylist(data)
     }
-    
+
     catchErrors(fetchData())
   }, [])
 
-  return (
+  return !playlist ? (
+    <Loader height={'100vh'}/>
+  ) : (
     <TopPlaylistPageContainer>
       <TitleName>Your Playlist</TitleName>
       <TopPlaylist>
-        {playlist &&
-          playlist.items.map((item) => <Playlist key={item.id} data={item} />)}
+        {playlist.items.map((item) => (
+          <Playlist key={item.id} data={item} />
+        ))}
       </TopPlaylist>
     </TopPlaylistPageContainer>
   )

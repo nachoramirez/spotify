@@ -15,6 +15,8 @@ import { getTrackInfo } from '../../spotify'
 
 import { catchErrors } from '../../utils'
 
+import Loader from '../../components/Loader'
+
 const SongPage = () => {
   const navigate = useNavigate()
   const id = window.location.pathname.replace('/song/', '')
@@ -32,23 +34,28 @@ const SongPage = () => {
 
   return (
     <>
-      {songData && (
+      {!songData ? (
+        <Loader />
+      ) : (
         <SongPageContainer>
           <SongImage src={songData.album.images[0].url} />
           <SongInfo>
             <SongName>{songData.name}</SongName>
             <SongArtists>
               {songData.artists.map((item) => (
-                <ArtistName onClick={() => navigate(`/artist/${item.id}`)} key={item.id}> {item.name}</ArtistName>
+                <ArtistName
+                  onClick={() => navigate(`/artist/${item.id}`)}
+                  key={item.id}
+                >
+                  {item.name}
+                </ArtistName>
               ))}
             </SongArtists>
             <AlbumName onClick={() => navigate(`/albums/${songData.album.id}`)}>
               {songData.album.name} • {songData.album.release_date}
             </AlbumName>
             <ListenButton
-              onClick={() =>
-                window.open(songData.external_urls.spotify)
-              }
+              onClick={() => window.open(songData.external_urls.spotify)}
             >
               PLAY ON SPOTIFY
             </ListenButton>

@@ -15,6 +15,7 @@ import ListOfSongs from '../../components/ListOfSongs/ListOfSongs.jsx'
 import { getPlaylistInfo } from '../../spotify'
 
 import { catchErrors } from '../../utils'
+import Loader from '../../components/Loader'
 
 const PlaylistInfo = () => {
   const id = window.location.pathname
@@ -32,7 +33,9 @@ const PlaylistInfo = () => {
 
   return (
     <PlaylistInfoContainer>
-      {playlistInfo && (
+      {!playlistInfo ? (
+          <Loader height={"100vh"} />
+        ) :  (
         <Content>
           <PlaylistData>
             <ImagePlaylist src={playlistInfo.images[0].url} />

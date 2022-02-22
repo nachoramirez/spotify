@@ -9,11 +9,14 @@ import {
 } from './ProfileHeader'
 
 import { logout } from '../../spotify'
+import Loader from '../Loader'
 
 const ProfileHeader = ({ profile, followingArtist }) => {
   return (
     <>
-      {profile && (
+      {!profile ? (
+        <Loader height="100vh" />
+      ) : (
         <ProfileHeaderContainer>
           <ProfileImage src={profile.images[0].url} />
           <div>
