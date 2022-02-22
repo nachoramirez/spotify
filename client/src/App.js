@@ -39,7 +39,7 @@ const LoginContainer = styled.div`
 const LOGIN_URI =
   process.env.NODE_ENV !== 'production'
     ? 'http://localhost:8888/login'
-    : 'https://nacho-spotify.herokuapp.com/login';
+    : 'https://nacho-spotify.herokuapp.com/login'
 
 function App() {
   const width = useWindowDimensions()
@@ -64,9 +64,7 @@ function App() {
       <GlobalStyle />
       {!token ? (
         <LoginContainer>
-          <LoginButton href={LOGIN_URI}>
-            Log in to Spotify
-          </LoginButton>
+          <LoginButton href={LOGIN_URI}>Log in to Spotify</LoginButton>
         </LoginContainer>
       ) : (
         <Router className="app">
@@ -74,7 +72,7 @@ function App() {
           <ScrollToTop />
           {width < 768 && <NavigationArrows />}
           <Routes>
-            <Route path="/profile" element={<Profile profile={profile} />} />
+            <Route path="/" element={<Profile profile={profile} />} />
             <Route path="/top-artists" element={<TopArtistPage />}></Route>
             <Route path="/top-songs" element={<TopSongsPage />}></Route>
             <Route path="/playlists" element={<TopPlaylistPage />}></Route>

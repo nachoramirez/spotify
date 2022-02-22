@@ -20,11 +20,11 @@ const NavBar = ({ photo }) => {
   const width = useWindowDimensions()
   return (
     <NavBarContainter>
-      <Logo src={SpotifyIcon} onClick={() => navigate('/profile')} />
+      <Logo src={SpotifyIcon} onClick={() => navigate('/')} />
       <Menu>
         <MenuItem
-          onClick={() => navigate('/profile')}
-          selected={location.pathname === '/profile'}
+          onClick={() => navigate('/')}
+          selected={location.pathname === '/'}
         >
           <UserIconContainer>
             <UserIconImg hasProfile={!photo} src={photo ? photo : UserIcon} />
