@@ -29,13 +29,13 @@ export const TitleName = styled.h1`
 
 export const TopArtists = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
   grid-gap: 30px;
   padding: 50px;
 
   @media (max-width: 768px) {
     grid-gap: 10px;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     padding: 30px 0;
     margin-bottom: 50px;
   }

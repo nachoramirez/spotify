@@ -39,6 +39,7 @@ const SearchPage = () => {
     const fetchData = async () => {
       navigate(`/search/${input}`)
       const response = input !== '' && (await getSearchResults(input))
+      console.log(response.data)
       setSearchResults(response.data)
     }
 
@@ -72,7 +73,7 @@ const SearchPage = () => {
           </GridResults>
           <SearchTitle> Artist</SearchTitle>
           <GridResults>
-            {searchResults.artists ? (
+            {!searchResults.artists ? (
               <Loader />
             ) : (
               searchResults.artists.items.map((item) => (

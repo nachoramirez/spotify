@@ -11,13 +11,13 @@ export const ProfileTop = styled.div`
   grid-auto-rows: 0;
   grid-template-rows: 1fr;
   overflow: hidden;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   grid-gap: 2%;
   width: 100%;
   height: 380px;
   padding: 50px;
   @media (max-width: 768px) {
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     height: 500px;
     grid-auto-rows: 2;
     grid-gap: 20px 15px;
